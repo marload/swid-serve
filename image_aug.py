@@ -2,12 +2,6 @@ from imgaug import augmenters as iaa
 import cv2
 import os
 
-"""
-사용 방법:
-generator에
-바꾸고 싶은 이미지가 들어가 있는 폴더를 지정한다.
-"""
-
 PATH = []
 for i in range(1, 26):
     PATH.append("./dataset/model{}/train/normal".format(i))
@@ -32,10 +26,8 @@ def generator(image_list):
             sometimes(iaa.PiecewiseAffine(scale=0.015)),
             sometimes(iaa.MotionBlur(k=7, angle=0)),
             sometimes(iaa.MotionBlur(k=5, angle=144))
-        ], random_order=False) # apply augmenters in random order
+        ], random_order=False)
 
-        ## range에 따라 이미지 생성
-        ## 이미지를 생성
         for i in range(10):
 
             images_aug = seq.augment_image(images)
@@ -44,7 +36,6 @@ def generator(image_list):
             cv2.imwrite(name, images_aug)
             print(name + " is saved.")
         
-# generator(os.listdir(PATH))
 
 for i in PATH:
     generator(os.listdir(i))
