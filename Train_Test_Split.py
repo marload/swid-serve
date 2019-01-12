@@ -15,12 +15,12 @@ def directoryLength(PATH):
     return len(os.listdir(PATH))
 
 def numOfImageToMove(PATH, splitRate):
-    return int(directoryLength(PATH) * splitRate)
+    return splitRate
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--model_index', type=int, default=5)
-parser.add_argument('--crackSplitRate', type=float, default=0.2)
-parser.add_argument('--normalSplitRate', type=float, default=0.2)
+parser.add_argument('--crackSplitRate', type=int, default=100)
+parser.add_argument('--normalSplitRate', type=int, default=100)
 
 config = parser.parse_args()
 
